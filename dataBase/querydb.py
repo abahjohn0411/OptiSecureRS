@@ -5,7 +5,7 @@ import os
 
 def select_df():
     db = getdb()
-    
+
     query = text("""
         SELECT 
             c.CustomerID, c.Age, c.Gender, c.Income, c.Location, c.MaritalStatus,
@@ -24,10 +24,14 @@ def select_df():
     df = result.fetchall()
     headers = result.keys()
 
-    save_path = r"C:\Users\ASUS PC\Desktop\AMDARI INTERNSHIP\optiSecure\dataBase"
+    save_path = r"C:\Users\ASUS PC\Desktop\AMDARI INTERNSHIP\optiSecure_RS\dataBase"
+    
+    # Ensure the directory exists
+    os.makedirs(save_path, exist_ok=True)
+
     file_path = os.path.join(save_path, "df.csv")
 
-    with open(file_path, "w", newline="") as file:
+    with open(file_path, "w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
         writer.writerow(headers)
         writer.writerows(df)
