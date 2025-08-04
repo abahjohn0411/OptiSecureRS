@@ -15,7 +15,7 @@ def preprocessing(file_path):
 
     # Identify numeric and categorical columns
     num_col = df.select_dtypes(include=[np.number]).columns
-    cat_col = df.select_dtypes(include=['object']).columns  
+    cat_col = df.select_dtypes(include=['object']).columns
 
     # Handle missing values
     df[num_col] = df[num_col].fillna(df[num_col].mean())
@@ -33,16 +33,20 @@ def preprocessing(file_path):
 
     # Clean and standardize text columns
     for col in cat_col:
-        df[col] = df[col].astype(str).str.strip().str.lower()  # trim + lowercase
+        df[col] = df[col].astype(str).str.strip().str.lower()
         df[col] = df[col].astype('category')
 
     # Scale selected numeric columns
     scaler = StandardScaler()
     df_scale = ['Income', 'Premium']
-    
     df[df_scale] = scaler.fit_transform(df[df_scale])
 
+    # Confirm completion
+    print(f"✅ Data preprocessing completed successfully. Data shape: Rows: {df.shape[0]}, Columns: {df.shape[1]}")
+
     return df
+
+
 
 
     
