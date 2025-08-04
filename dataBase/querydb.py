@@ -26,7 +26,7 @@ def select_df():
 
     save_path = r"C:\Users\ASUS PC\Desktop\AMDARI INTERNSHIP\optiSecure_RS\dataBase"
     
-    # Ensure the directory exists
+
     os.makedirs(save_path, exist_ok=True)
 
     file_path = os.path.join(save_path, "df.csv")
