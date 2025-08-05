@@ -18,7 +18,7 @@ def preprocessing(file_path):
     cat_col = df.select_dtypes(include=['object']).columns
 
     # Handle missing values
-    df[num_col] = df[num_col].fillna(df[num_col].mean())
+    df[num_col] = df[num_col].fillna(df[num_col].median())
     for col in cat_col:
         df[col] = df[col].fillna(df[col].mode()[0])
 
