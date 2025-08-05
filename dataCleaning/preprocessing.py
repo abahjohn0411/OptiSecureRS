@@ -45,6 +45,7 @@ def preprocessing(file_path):
     print(f"✅ Data preprocessing completed successfully. Data shape: Rows: {df.shape[0]}, Columns: {df.shape[1]}")
     print(df.describe(include=(np.number)))
     print(df)
+    print(df.dtypes)
 
     return df
 
