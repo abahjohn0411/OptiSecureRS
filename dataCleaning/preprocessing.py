@@ -21,6 +21,20 @@ def preprocessing(file_path):
     df[num_col] = df[num_col].fillna(df[num_col].median())
     for col in cat_col:
         df[col] = df[col].fillna(df[col].mode()[0])
+    # Handle missing numerical values
+    #from sklearn.impute import SimpleImputer
+    #num_col = df.select_dtypes(include = [np.number])
+    #imputer = SimpleImputer(strategy='median')
+    #df_num = imputer.fit_transform(num_col)
+    #df_num = pd.DataFrame(df_num, columns=num_col.columns)
+
+    # Handle missing categorical values
+    #from sklearn.impute import SimpleImputer
+    #cat_col = df.select_dtypes(include = [object])
+    #imputer = SimpleImputer(strategy='most_frequent')
+    #df_cat = imputer.fit_transform(cat_col)
+    #df_cat = pd.DataFrame(df_cat, columns=cat_col.columns)
+    
 
     # Handle outliers using IQR method
     for col in num_col:
@@ -44,8 +58,9 @@ def preprocessing(file_path):
     # Confirm completion
     print(f"✅ Data preprocessing completed successfully. Data shape: Rows: {df.shape[0]}, Columns: {df.shape[1]}")
     print(df.describe(include=(np.number)))
-    print(df)
+  
     print(df.dtypes)
+    print(df.info)
 
     return df
 
